@@ -24,7 +24,7 @@ class Result extends StatelessWidget {
     return Center(
         child: Column(children: <Widget>[
       Text(
-        'You did it!',
+        resultPhrase,
         style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
         textAlign: TextAlign.center,
       ),
