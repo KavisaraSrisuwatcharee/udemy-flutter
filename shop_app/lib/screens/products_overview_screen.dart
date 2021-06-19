@@ -39,24 +39,39 @@ class ProductsOverviewScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    var scaffold = Scaffold(
       appBar: AppBar(
         title: Text('Myshop'),
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(10),
-        itemCount: loadedProducts.length,
-        itemBuilder: (ctx, i) => ProductItem(
-          id: loadedProducts[i].id,
-          title: loadedProducts[i].title,
-          imageUrl: loadedProducts[i].imageUrl,
-        ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10),
+      body: ProductGrid(loadedProducts: loadedProducts),
+    );
+    return scaffold;
+  }
+}
+
+class ProductGrid extends StatelessWidget {
+  const ProductGrid({
+    Key? key,
+    required this.loadedProducts,
+  }) : super(key: key);
+
+  final List<Product> loadedProducts;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      padding: const EdgeInsets.all(10),
+      itemCount: loadedProducts.length,
+      itemBuilder: (ctx, i) => ProductItem(
+        id: loadedProducts[i].id,
+        title: loadedProducts[i].title,
+        imageUrl: loadedProducts[i].imageUrl,
       ),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10),
     );
   }
 }
